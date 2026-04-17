@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Task List</title>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>Task List</h1>
+    <div class="task-container">
+        {% for task in tasks %}
+            <div class="task">
+                <div>{{task.title}} - {{task.description}} - {% if task.completed %}Completed{% else %}Pending{% endif %}</div>
+                <div class="tasl-actions">
+                    <a href="{% url 'update_task' task.pk}">Update</a>
+                    <form action="{% url 'delete_task' task.pk %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'create_task' %}">Create New Task</a>
+</body>
+</html>

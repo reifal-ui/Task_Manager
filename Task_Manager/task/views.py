@@ -15,7 +15,7 @@ def create_task(request):
             form.save()
             return redirect('task_list')
     else:
-        form: TaskFrom() # type: ignore
+        form: TaskFrom()
     return render(request, 'tasks/create_task.html', {'form': form})
 
 def update_task(request, pk):
